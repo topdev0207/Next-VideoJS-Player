@@ -8,6 +8,7 @@ import {
   VideoJSQualityPlugin,
   VideoJSIVSTech,
   VideoJSEvents,
+  TextMetadataCue,
 } from "amazon-ivs-player";
 import Head from "next/head";
 import styled from "styled-components";
@@ -25,9 +26,11 @@ const defaultPlaybackUrl =
 export interface IVSPlayerProps {
   /** IVS Playback URL */
   src?: string;
+  /** quiz 메타데이터가 도달하면 이를 핸들링하는 함수 */
+  handleQuizEvent?: (cue: TextMetadataCue) => void;
 }
 
-function IVSPlayer({ src }: IVSPlayerProps) {
+function IVSPlayer({ src, handleQuizEvent }: IVSPlayerProps) {
   useEffect(() => {
     // 로드할 source stream 을 지정합니다. Prop 으로 받은 src 로 설정하거나 존재하지 않으면 기본 url 로 설정합니다(필수 아님).
     const PLAYBACK_URL = src ?? defaultPlaybackUrl;
@@ -90,6 +93,11 @@ function IVSPlayer({ src }: IVSPlayerProps) {
       function (cue) {
         console.log(cue);
         console.log("Timed metadata: ", cue.text);
+
+        const metadata = JSON.parse(cue.text);
+        if (metadata.type === "quiz" && handleQuizEvent) {
+          handleQuizEvent(cue);
+        }
       }
     );
 
