@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-import fs from "fs";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const secretKey = fs.readFileSync("private-key.pem", "utf8");
+  const secretKey = (process.env.PRIVATE_PLAYBACK_KEY as string).replace(
+    /\\n/g,
+    "\n"
+  );
   const ivsPlaybackToken = jwt.sign(
     {
       "aws:channel-arn": process.env.NEXT_PUBLIC_CHANNEL_ARN,
