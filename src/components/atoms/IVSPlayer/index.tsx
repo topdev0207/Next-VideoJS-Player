@@ -112,6 +112,7 @@ function IVSPlayer({ src, handleQuizEvent }: IVSPlayerProps) {
     ivsPlayer.addEventListener(events.PlayerEventType.ERROR, (payload) => {
       const { type, code, source, message } = payload;
       console.log(type, code, source, message);
+      alert(message);
     });
   }, [src]);
 

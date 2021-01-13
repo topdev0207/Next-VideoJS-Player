@@ -36,8 +36,8 @@ export default function Home() {
       const cookies = new Cookies();
       cookies.set("playbackToken", playbackToken, { path: "/" });
 
-      // authorized route 로 이동
-      router.push("/authorized");
+      // private video route 로 이동
+      router.push("/privateVideo");
     } catch (error) {
       throw error;
     }
