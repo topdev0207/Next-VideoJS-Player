@@ -16,6 +16,6 @@ Primary.args = {
   index: 0,
   onClick: () => console.log("click answer!"),
   correct: true,
-  showResult: false,
+  showResult: "",
   children: "답변 1",
 };
