@@ -37,8 +37,8 @@ export interface AnswerProps {
   onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
   /** 정답 여부 */
   correct: boolean;
-  /** 결과 노출 여부 */
-  showResult: boolean;
+  /** 결과 노출 여부(결과 값) */
+  showResult: string;
   children?: React.ReactNode;
 }
 

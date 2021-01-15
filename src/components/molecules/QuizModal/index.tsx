@@ -37,7 +37,7 @@ export interface QuizModalProps {
 const QuizModal = ({
   quizInfo: { question, correctIndex, answers },
 }: QuizModalProps) => {
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState("");
 
   /**
    * 선택지를 클릭하면 호출되는 함수
@@ -54,11 +54,10 @@ const QuizModal = ({
     }
 
     if (Number(index) === correctIndex) {
-      console.log("정답입니다!");
+      setShowResult("정답입니다!🎉");
     } else {
-      console.log("틀렸습니다...");
+      setShowResult("틀렸습니다😅..");
     }
-    setShowResult(true);
   };
 
   return (
@@ -77,6 +76,7 @@ const QuizModal = ({
           </Answer>
         ))}
       </AnswerContainer>
+      {showResult}
     </Wrapper>
   );
 };
