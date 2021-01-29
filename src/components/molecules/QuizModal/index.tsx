@@ -32,10 +32,12 @@ export interface IQuiz {
 
 export interface QuizModalProps {
   quizInfo: IQuiz;
+  onClickAnswer: () => void;
 }
 
 const QuizModal = ({
   quizInfo: { question, correctIndex, answers },
+  onClickAnswer,
 }: QuizModalProps) => {
   const [showResult, setShowResult] = useState("");
 
@@ -58,6 +60,8 @@ const QuizModal = ({
     } else {
       setShowResult("틀렸습니다😅..");
     }
+    // callback 함수 실행
+    onClickAnswer();
   };
 
   return (

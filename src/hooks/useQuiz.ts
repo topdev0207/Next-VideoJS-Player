@@ -24,12 +24,14 @@ export default function useQuiz() {
       answers,
       correctIndex,
     });
+  };
 
-    /** 10 초 뒤에 퀴즈를 닫는다 */
+  const handleClickAnswer = () => {
+    /** 5 초 뒤에 퀴즈를 닫는다 */
     setTimeout(() => {
       setShowQuizModal(false);
       setQuizInfo(initialQuizInfo);
-    }, 10 * 1000);
+    }, 5 * 1000);
   };
 
   return {
@@ -37,5 +39,6 @@ export default function useQuiz() {
     quizInfo,
 
     handleQuizEvent,
+    handleClickAnswer,
   };
 }

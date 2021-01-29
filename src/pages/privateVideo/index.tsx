@@ -19,7 +19,12 @@ const playBackUrl = process.env.NEXT_PUBLIC_PLAYBACK_URL;
 
 export default function Home() {
   const [src, setSrc] = useState(playBackUrl);
-  const { showQuizModal, quizInfo, handleQuizEvent } = useQuiz();
+  const {
+    showQuizModal,
+    quizInfo,
+    handleQuizEvent,
+    handleClickAnswer,
+  } = useQuiz();
 
   /**
    * 컴포넌트가 첫 렌더링되면 쿠키에 저장된 plabackToken 을 가져와 쿼리 파라미터로 추가한다
@@ -54,7 +59,9 @@ export default function Home() {
       {/** IVS 플레이어 */}
       <IVSPlayer src={src} handleQuizEvent={handleQuizEvent} />
       {/** 퀴즈 모달 */}
-      {showQuizModal && <QuizModal quizInfo={quizInfo} />}
+      {showQuizModal && (
+        <QuizModal quizInfo={quizInfo} onClickAnswer={handleClickAnswer} />
+      )}
     </Wrapper>
   );
 }
